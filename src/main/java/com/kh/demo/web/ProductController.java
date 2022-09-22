@@ -48,15 +48,15 @@ public class ProductController {
 
     //필드검증
     //상품수량은 100초과 금지
-    if(saveForm.getQuantity() > 100){
-      bindingResult.rejectValue("quantity","product.quantity",new Integer[]{100},"상품수량 초과");
+    if(saveForm.getCount() > 100){
+      bindingResult.rejectValue("count","product.count",new Integer[]{100},"상품수량 초과");
       log.info("bindingResult={}", bindingResult);
       return "product/saveForm";
     }
 
     //오브젝트검증
     //총액(상품수량*단가) 1000만원 초과금지
-    if(saveForm.getQuantity() * saveForm.getPrice() > 10_000_000L){
+    if(saveForm.getCount() * saveForm.getPrice() > 10_000_000L){
       bindingResult.reject("product.totalPrice",new Integer[]{1000},"총액 초과!");
       log.info("bindingResult={}", bindingResult);
       return "product/saveForm";
@@ -114,15 +114,15 @@ public class ProductController {
 
     //필드검증
     //상품수량은 100초과 금지
-    if(updateForm.getQuantity() > 100){
-      bindingResult.rejectValue("quantity","product.quantity",new Integer[]{100},"상품수량 초과");
+    if(updateForm.getCount() > 100){
+      bindingResult.rejectValue("count","product.count",new Integer[]{100},"상품수량 초과");
       log.info("bindingResult={}", bindingResult);
       return "product/saveForm";
     }
 
     //오브젝트검증
     //총액(상품수량*단가) 1000만원 초과금지
-    if(updateForm.getQuantity() * updateForm.getPrice() > 10_000_000L){
+    if(updateForm.getCount() * updateForm.getPrice() > 10_000_000L){
       bindingResult.reject("product.totalPrice",new Integer[]{1000},"총액 초과!");
       log.info("bindingResult={}", bindingResult);
       return "product/saveForm";

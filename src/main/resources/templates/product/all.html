@@ -38,7 +38,7 @@
           <a href="" th:href="@{/products/{id}/detail(id=${product.productId})}" th:text="${product.pname}">상품명</a>
         </td>
         <td th:text="${product.price}">가격</td>
-        <td th:text="${product.quantity}">수량</td>
+        <td th:text="${product.count}">수량</td>
       </tr>
       </tbody>
     </table>

@@ -10,7 +10,6 @@ import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
-import javax.swing.text.html.Option;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -29,7 +28,7 @@ public class ProductDAOImpl implements ProductDAO{
   public Long save(Product product) {
     StringBuffer sql = new StringBuffer();
 
-    sql.append("insert into product(product_id,pname,quantity,price) ");
+    sql.append("insert into product(product_id,pname,count,price) ");
     sql.append("     values(product_product_id_seq.nextval, ?, ?, ?) ");
 
     KeyHolder keyHolder = new GeneratedKeyHolder();
@@ -38,7 +37,7 @@ public class ProductDAOImpl implements ProductDAO{
       public PreparedStatement createPreparedStatement(Connection con) throws SQLException {
         PreparedStatement pstmt = con.prepareStatement(sql.toString(), new String[]{"product_id"});
         pstmt.setString(1, product.getPname());
-        pstmt.setLong(2, product.getQuantity());
+        pstmt.setLong(2, product.getCount());
         pstmt.setLong(3, product.getPrice());
         return pstmt;
       }
@@ -51,7 +50,7 @@ public class ProductDAOImpl implements ProductDAO{
   @Override
   public List<Product> findAll() {
     StringBuffer sql = new StringBuffer();
-    sql.append("select product_id,pname,quantity,price ");
+    sql.append("select product_id,pname,count,price ");
     sql.append("  from product ");
     sql.append("order by product_id desc ");
 
@@ -65,7 +64,7 @@ public class ProductDAOImpl implements ProductDAO{
   public Optional<Product> findByProductId(Long productId) {
     StringBuffer sql = new StringBuffer();
 
-    sql.append("select product_id, pname, quantity, price ");
+    sql.append("select product_id, pname, count, price ");
     sql.append("  from product ");
     sql.append(" where product_id = ? ");
 
@@ -90,12 +89,12 @@ public class ProductDAOImpl implements ProductDAO{
     StringBuffer sql = new StringBuffer();
     sql.append("update product ");
     sql.append("   set pname = ?, ");
-    sql.append("       quantity = ?, ");
+    sql.append("       count = ?, ");
     sql.append("       price = ? ");
     sql.append(" where product_id = ? ");
 
     int affectedRow = jt.update(sql.toString(),
-        product.getPname(), product.getQuantity(), product.getPrice(),productId);
+        product.getPname(), product.getCount(), product.getPrice(),productId);
     return affectedRow;
   }
 

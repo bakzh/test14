@@ -11,7 +11,7 @@ public class SaveForm {
   @NotNull
   @Positive
   @Max(9999999999L)
-  private Long quantity;    //  QUANTITY	NUMBER(10,0)
+  private Long count;    //  QUANTITY	NUMBER(10,0)
   @NotNull
   @Positive
   @Max(9999999999L)
